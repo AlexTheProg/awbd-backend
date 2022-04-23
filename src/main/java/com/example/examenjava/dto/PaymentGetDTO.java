@@ -17,9 +17,9 @@ public class PaymentGetDTO {
     @NotBlank
     private String status;
 
-    private UserDTO user;
+    private UserPostDTO user;
 
-    public PaymentGetDTO(String id, String type, String amount, String status, UserDTO user) {
+    public PaymentGetDTO(String id, String type, String amount, String status, UserPostDTO user) {
         this.id = id;
         this.type = type;
         this.amount = amount;
@@ -62,11 +62,11 @@ public class PaymentGetDTO {
         this.status = status;
     }
 
-    public UserDTO getUser() {
+    public UserPostDTO getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(UserPostDTO user) {
         this.user = user;
     }
 }

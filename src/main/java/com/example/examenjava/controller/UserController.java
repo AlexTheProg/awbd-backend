@@ -1,6 +1,6 @@
 package com.example.examenjava.controller;
 
-import com.example.examenjava.dto.UserDTO;
+import com.example.examenjava.dto.UserPostDTO;
 import com.example.examenjava.mapper.UserMapper;
 import com.example.examenjava.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<UserDTO>> getAllUsers(){
+    public ResponseEntity<List<UserPostDTO>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers()
                 .stream()
                 .map(mapper::fromDomain)

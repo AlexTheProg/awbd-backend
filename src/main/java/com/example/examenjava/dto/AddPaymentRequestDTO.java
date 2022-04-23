@@ -11,7 +11,7 @@ public class AddPaymentRequestDTO {
     @Size(min = 1) //interpreted double positive value as strictly higher than 0, therefore min is 1
     private String amount;
 
-    private UserDTO user;
+    private UserPostDTO user;
 
     @NotBlank
     private String status;
@@ -25,19 +25,19 @@ public class AddPaymentRequestDTO {
         this.status = status;
     }
 
-    public AddPaymentRequestDTO(String type, String amount, UserDTO user, String status) {
+    public AddPaymentRequestDTO(String type, String amount, UserPostDTO user, String status) {
         this.type = type;
         this.amount = amount;
         this.user = user;
         this.status = status;
     }
 
-    public UserDTO getUser() {
+    public UserPostDTO getUser() {
         return user;
     }
 
-    public void setUser(UserDTO userDTO) {
-        this.user = userDTO;
+    public void setUser(UserPostDTO userPostDTO) {
+        this.user = userPostDTO;
     }
 
     public String getType() {

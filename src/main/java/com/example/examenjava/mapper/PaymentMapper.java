@@ -2,7 +2,6 @@ package com.example.examenjava.mapper;
 
 import com.example.examenjava.dto.AddPaymentRequestDTO;
 import com.example.examenjava.dto.PaymentGetDTO;
-import com.example.examenjava.dto.UserDTO;
 import com.example.examenjava.model.Payment;
 import org.mapstruct.Mapper;
 
