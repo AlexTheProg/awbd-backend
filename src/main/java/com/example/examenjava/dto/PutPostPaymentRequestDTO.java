@@ -3,7 +3,8 @@ package com.example.examenjava.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class AddPaymentRequestDTO {
+public class PutPostPaymentRequestDTO {
+    private String id;
     @NotBlank
     private String type;
 
@@ -16,16 +17,17 @@ public class AddPaymentRequestDTO {
     @NotBlank
     private String status;
 
-    public AddPaymentRequestDTO() {
+    public PutPostPaymentRequestDTO() {
     }
 
-    public AddPaymentRequestDTO(String type, String amount, String status) {
+    public PutPostPaymentRequestDTO(String id, String type, String amount, String status) {
         this.type = type;
         this.amount = amount;
         this.status = status;
+        this.id = id;
     }
 
-    public AddPaymentRequestDTO(String type, String amount, UserPostDTO user, String status) {
+    public PutPostPaymentRequestDTO(String type, String amount, UserPostDTO user, String status) {
         this.type = type;
         this.amount = amount;
         this.user = user;
@@ -38,6 +40,14 @@ public class AddPaymentRequestDTO {
 
     public void setUser(UserPostDTO userPostDTO) {
         this.user = userPostDTO;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getType() {

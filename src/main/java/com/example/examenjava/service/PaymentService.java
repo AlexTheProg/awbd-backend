@@ -7,6 +7,7 @@ import com.example.examenjava.exception.PaymentNotFoundException;
 import com.example.examenjava.model.Payment;
 import com.example.examenjava.model.Status;
 import com.example.examenjava.model.Type;
+import com.example.examenjava.model.User;
 import com.example.examenjava.repository.PaymentRepository;
 import com.example.examenjava.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,10 @@ public class PaymentService {
         }
 
         return paymentRepo.findAll(); // both filtering options are null
+    }
+
+    public void updatePayment(Payment payment, Long id){
+
     }
 
     public void deletePayment(Long id){
