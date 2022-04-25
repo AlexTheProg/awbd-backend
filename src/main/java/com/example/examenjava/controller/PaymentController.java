@@ -1,7 +1,7 @@
 package com.example.examenjava.controller;
 
 import com.example.examenjava.dto.PutPostPaymentRequestDTO;
-import com.example.examenjava.dto.PaymentGetDTO;
+import com.example.examenjava.dto.paymentDtos.PaymentGetDTO;
 import com.example.examenjava.mapper.PaymentMapper;
 import com.example.examenjava.mapper.UserMapper;
 import com.example.examenjava.model.Payment;
@@ -32,17 +32,19 @@ public class PaymentController {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> addPayment(@RequestBody @Valid PutPostPaymentRequestDTO request){
+    public ResponseEntity<Void> addPayment(@RequestBody @Valid PaymentGetDTO request){
         userService.saveUser(userMapper.toDomain(request.getUser()));
-        paymentService.addPayment(mapper.fromPaymentRequestDTO(request));
+        paymentService.addPayment(mapper.mapToDomain(request));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping()
-    public ResponseEntity<PutPostPaymentRequestDTO> updatePayment(@RequestBody @Valid PutPostPaymentRequestDTO request){
-        userService.saveUser(userMapper.toDomain(request.getUser()));
-        paymentService.addPayment(mapper.fromPaymentRequestDTO(request));
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<PaymentGetDTO> updatePayment(@RequestBody @Valid PaymentGetDTO request,
+                                                                  @PathVariable(value = "id") String id){
+
+        return ResponseEntity.ok(mapper.mapToDto(paymentService.updatePayment(mapper.mapToDomain(request),
+                userMapper.toDomain(request.getUser()),
+                Long.parseLong(id))));
     }
 
     @PutMapping("/cancel/{id}")
@@ -60,7 +62,10 @@ public class PaymentController {
     @CrossOrigin(origins = "http://localhost:4200")
     public List<PaymentGetDTO> getPayment(@RequestParam(required = false) String status,
                                           @RequestParam(required = false) String type){
-        return paymentService.get(status, type).stream().map(mapper::paymentToPaymentGetDto).collect(Collectors.toList());
+
+        List<Payment> paymentList = paymentService.get(status, type);
+
+        return paymentList.stream().map(mapper::mapToDto).collect(Collectors.toList());
     }
 
 

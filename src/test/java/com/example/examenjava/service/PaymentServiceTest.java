@@ -33,7 +33,7 @@ class PaymentServiceTest {
     private Payment payment;
 
     @BeforeEach
-    private void setUp(){payment = new Payment(1L, Type.POS, 200d, Status.NEW);}
+    private void setUp(){payment = new Payment(1L, Type.POS, 200d, Status.NEW, null);}
 
     @Test
     void addPayment() {

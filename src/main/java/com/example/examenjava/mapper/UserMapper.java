@@ -1,5 +1,6 @@
 package com.example.examenjava.mapper;
 
+import com.example.examenjava.dto.userDtos.UserGetDTO;
 import com.example.examenjava.dto.UserPostDTO;
 import com.example.examenjava.model.User;
 import org.mapstruct.Mapper;
@@ -8,5 +9,7 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
 
     UserPostDTO fromDomain(User user);
-    User toDomain(UserPostDTO userPostDTO);
+    User toDomain(UserGetDTO userPostDTO);
+
+    UserGetDTO map(User user);
 }

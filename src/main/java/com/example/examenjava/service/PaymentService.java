@@ -1,20 +1,15 @@
 package com.example.examenjava.service;
 
-import com.example.examenjava.exception.InvalidStatusException;
-import com.example.examenjava.exception.InvalidTypeException;
 import com.example.examenjava.exception.PaymentAlreadyCancelledException;
 import com.example.examenjava.exception.PaymentNotFoundException;
 import com.example.examenjava.model.Payment;
 import com.example.examenjava.model.Status;
-import com.example.examenjava.model.Type;
 import com.example.examenjava.model.User;
 import com.example.examenjava.repository.PaymentRepository;
 import com.example.examenjava.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PaymentService {
@@ -56,11 +51,20 @@ public class PaymentService {
             return paymentRepo.findByStatus(status); //type is null
         }
 
-        return paymentRepo.findAll(); // both filtering options are null
+        return paymentRepo.findAll();// both filtering options are null
     }
 
-    public void updatePayment(Payment payment, Long id){
+    public Payment updatePayment(Payment requestPayment, User requestUser, Long id){
+        Payment existingPayment = paymentRepo.getById(id);
+        User existingUser = userRepo.getById(existingPayment.getUser().getUserId());
 
+        existingPayment.setStatus(requestPayment.getStatus());
+        existingPayment.setType(requestPayment.getType());
+        existingPayment.setAmount(requestPayment.getAmount());
+        existingPayment.setUser(requestUser);
+
+        paymentRepo.save(existingPayment);
+        return existingPayment;
     }
 
     public void deletePayment(Long id){

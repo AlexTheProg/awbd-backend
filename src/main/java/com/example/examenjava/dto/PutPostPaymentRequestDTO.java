@@ -17,17 +17,10 @@ public class PutPostPaymentRequestDTO {
     @NotBlank
     private String status;
 
-    public PutPostPaymentRequestDTO() {
-    }
 
-    public PutPostPaymentRequestDTO(String id, String type, String amount, String status) {
-        this.type = type;
-        this.amount = amount;
-        this.status = status;
+
+    public PutPostPaymentRequestDTO(String id, String type, String amount, UserPostDTO user, String status) {
         this.id = id;
-    }
-
-    public PutPostPaymentRequestDTO(String type, String amount, UserPostDTO user, String status) {
         this.type = type;
         this.amount = amount;
         this.user = user;

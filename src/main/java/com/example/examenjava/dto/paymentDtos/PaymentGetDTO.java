@@ -1,4 +1,6 @@
-package com.example.examenjava.dto;
+package com.example.examenjava.dto.paymentDtos;
+
+import com.example.examenjava.dto.userDtos.UserGetDTO;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,9 +19,9 @@ public class PaymentGetDTO {
     @NotBlank
     private String status;
 
-    private UserPostDTO user;
+    private UserGetDTO user;
 
-    public PaymentGetDTO(String id, String type, String amount, String status, UserPostDTO user) {
+    public PaymentGetDTO(String id, String type, String amount, String status, UserGetDTO user) {
         this.id = id;
         this.type = type;
         this.amount = amount;
@@ -62,11 +64,11 @@ public class PaymentGetDTO {
         this.status = status;
     }
 
-    public UserPostDTO getUser() {
+    public UserGetDTO getUser() {
         return user;
     }
 
-    public void setUser(UserPostDTO user) {
+    public void setUser(UserGetDTO user) {
         this.user = user;
     }
 }

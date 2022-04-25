@@ -1,6 +1,9 @@
 package com.example.examenjava.repository;
 
+import com.example.examenjava.dto.paymentDtos.PaymentGetDTO;
 import com.example.examenjava.model.Payment;
+import com.example.examenjava.model.Status;
+import com.example.examenjava.model.Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

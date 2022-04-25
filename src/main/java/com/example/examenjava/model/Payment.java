@@ -21,13 +21,6 @@ public class Payment {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    public Payment(Long id, Type type, Double amount, Status status) {
-        this.id = id;
-        this.type = type;
-        this.amount = amount;
-        this.status = status;
-    }
-
     public Payment(Long id, Type type, Double amount, Status status, User user) {
         this.id = id;
         this.type = type;
