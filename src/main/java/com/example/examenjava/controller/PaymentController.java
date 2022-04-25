@@ -2,6 +2,7 @@ package com.example.examenjava.controller;
 
 import com.example.examenjava.dto.PutPostPaymentRequestDTO;
 import com.example.examenjava.dto.paymentDtos.PaymentGetDTO;
+import com.example.examenjava.dto.paymentDtos.PaymentPostDTO;
 import com.example.examenjava.mapper.PaymentMapper;
 import com.example.examenjava.mapper.UserMapper;
 import com.example.examenjava.model.Payment;
@@ -32,9 +33,9 @@ public class PaymentController {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> addPayment(@RequestBody @Valid PutPostPaymentRequestDTO request){
+    public ResponseEntity<Void> addPayment(@RequestBody @Valid PaymentPostDTO request){
         userService.saveUser(userMapper.toDomainPost(request.getUser()));
-        paymentService.addPayment(mapper.mapToDomainPutPost(request));
+        paymentService.addPayment(mapper.mapToPayment(request));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

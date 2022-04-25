@@ -61,7 +61,13 @@ public class PaymentService {
         existingPayment.setStatus(requestPayment.getStatus());
         existingPayment.setType(requestPayment.getType());
         existingPayment.setAmount(requestPayment.getAmount());
-        existingPayment.setUser(requestUser);
+
+
+        existingUser.setFirstName(requestUser.getFirstName());
+        existingUser.setLastName(requestUser.getLastName());
+        existingUser.setAge(requestUser.getAge());
+
+        existingPayment.setUser(existingUser);
 
         paymentRepo.save(existingPayment);
         return existingPayment;

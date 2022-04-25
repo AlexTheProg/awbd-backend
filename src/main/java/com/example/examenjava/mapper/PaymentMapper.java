@@ -2,6 +2,7 @@ package com.example.examenjava.mapper;
 
 import com.example.examenjava.dto.PutPostPaymentRequestDTO;
 import com.example.examenjava.dto.paymentDtos.PaymentGetDTO;
+import com.example.examenjava.dto.paymentDtos.PaymentPostDTO;
 import com.example.examenjava.dto.userDtos.UserGetDTO;
 import com.example.examenjava.model.Payment;
 import com.example.examenjava.model.User;
@@ -26,6 +27,9 @@ public interface PaymentMapper {
 
     Payment mapToDomainPutPost(PutPostPaymentRequestDTO request);
 
+    PaymentPostDTO mapToPostDto(Payment payment);
+
+    Payment mapToPayment(PaymentPostDTO request);
 
 
 }

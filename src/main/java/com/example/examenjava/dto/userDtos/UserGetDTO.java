@@ -14,11 +14,14 @@ public class UserGetDTO {
 
     private String age;
 
-    public UserGetDTO(String id, String firstName, String lastName, String age) {
+    private String role;
+
+    public UserGetDTO(String id, String firstName, String lastName, String age, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.role = role;
     }
 
     public String getId() {
@@ -51,5 +54,13 @@ public class UserGetDTO {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

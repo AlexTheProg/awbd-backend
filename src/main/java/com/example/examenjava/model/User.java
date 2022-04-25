@@ -12,16 +12,26 @@ public class User {
     private Long userId;
     private String firstName;
     private String lastName;
+    private String password;
+    private String role;
     private Integer age;
+    private boolean enabled;
+    private String username;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Payment> paymentList;
 
-    public User(Long userId, String firstName, String lastName, Integer age) {
+    public User(Long userId, String firstName, String lastName,
+                Integer age, String password, String role,
+                boolean enabled, String username) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
+        this.username = username;
     }
 
     public User() {}
@@ -64,5 +74,37 @@ public class User {
 
     public void setPaymentList(List<Payment> paymentList) {
         this.paymentList = paymentList;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
