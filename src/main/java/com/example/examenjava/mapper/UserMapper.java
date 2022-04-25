@@ -8,8 +8,11 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserPostDTO fromDomain(User user);
+    UserGetDTO fromDomain(User user);
     User toDomain(UserGetDTO userPostDTO);
+
+    UserPostDTO toDtoPost(User user);
+    User toDomainPost(UserPostDTO request);
 
     UserGetDTO map(User user);
 }

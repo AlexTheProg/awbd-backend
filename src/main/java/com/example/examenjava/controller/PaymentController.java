@@ -32,9 +32,9 @@ public class PaymentController {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> addPayment(@RequestBody @Valid PaymentGetDTO request){
-        userService.saveUser(userMapper.toDomain(request.getUser()));
-        paymentService.addPayment(mapper.mapToDomain(request));
+    public ResponseEntity<Void> addPayment(@RequestBody @Valid PutPostPaymentRequestDTO request){
+        userService.saveUser(userMapper.toDomainPost(request.getUser()));
+        paymentService.addPayment(mapper.mapToDomainPutPost(request));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

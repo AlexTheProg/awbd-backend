@@ -22,6 +22,10 @@ public interface PaymentMapper {
 
     Payment mapToDomain(PaymentGetDTO request);
 
+    PutPostPaymentRequestDTO mapToDtoPutPost(Payment payment);
+
+    Payment mapToDomainPutPost(PutPostPaymentRequestDTO request);
+
 
 
 }

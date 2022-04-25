@@ -3,7 +3,6 @@ package com.example.examenjava.dto;
 import javax.validation.constraints.NotBlank;
 
 public class UserPostDTO {
-    private String id;
     @NotBlank
     private String firstName;
 
@@ -16,18 +15,9 @@ public class UserPostDTO {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.id = id;
     }
 
     public UserPostDTO() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFirstName() {

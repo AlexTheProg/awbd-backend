@@ -22,11 +22,11 @@ public class UserController {
         this.mapper = mapper;
     }
 
-    @GetMapping()
-    public ResponseEntity<List<UserPostDTO>> getAllUsers(){
-        return ResponseEntity.ok(userService.getAllUsers()
-                .stream()
-                .map(mapper::fromDomain)
-                .collect(Collectors.toList()));
-    }
+//    @GetMapping()
+//    public ResponseEntity<List<UserPostDTO>> getAllUsers(){
+//        return ResponseEntity.ok(userService.getAllUsers()
+//                .stream()
+//                .map(mapper::fromDomain)
+//                .collect(Collectors.toList()));
+//    }
 }
