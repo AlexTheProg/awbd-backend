@@ -17,7 +17,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -36,7 +38,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable().cors();
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic();
 
 //        http.authorizeRequests()
 //                .anyRequest().authenticated()
@@ -46,8 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .logout().permitAll();
     }
 
-    @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .dataSource(dataSource)
@@ -70,9 +81,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Collections.singletonList("*"));
-        configuration.setAllowedHeaders(Collections.singletonList("*"));
+        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+        configuration.setExposedHeaders(List.of("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

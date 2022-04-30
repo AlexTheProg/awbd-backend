@@ -32,6 +32,10 @@ public class UserService {
         return userRepo.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
+    public User getByUsername(String username){
+        return userRepo.findByUsername(username).orElseThrow(UnknownError::new);
+    }
+
     @Transactional
     public void saveUser(User user){
         userRepo.save(user);
